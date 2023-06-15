@@ -22,14 +22,14 @@
 
 | Column             | Type       | Options                        | 
 | -------------------| ---------- | ------------------------------ | 
-| item_name          | string     | null: false                    | 
+| item_name_id       | integer    | null: false                    | 
 | price              | integer    | null: false                    |
 | item_explain       | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | item_condition_id  | integer    | null: false                    |
 | delivery_charge    | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| until_sendday      | integer    | null: false                    |
+| until_sendday_id   | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association 
