@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, presence: true
   validates :prefecture_id, presence: true
   validates :until_sendday_id, presence: true
+  
   validate :validate_image_presence
 
   private
@@ -20,7 +21,10 @@ class Item < ApplicationRecord
 
     errors.add(:image, 'must be attached')
   end
+
+  def item_params
+    params.require(:item).permit(:item_name, :price, :item_explain, :category_id, :item_condition_id, :delivery_charge_id, :prefecture_id, :until_sendday_id).merge(user_id: current_user.id)
+  end
 end
 
 
-:item_name, :price, :item_explain, :category_id, :item_condition_id, :delivery_charge_id, :prefecture_id, :until_sendday_id).merge(user_id: current_user.id)
