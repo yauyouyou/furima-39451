@@ -5,10 +5,9 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-
   describe 'ユーザー新規登録' do
     context '新規登録できる場合' do
-      it "nameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
+      it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
         expect(@user).to be_valid
       end
     end
@@ -70,7 +69,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password は半角英数を両方含む必要があります')
       end
-      
+
       it 'passwordとpassword（確認）は値の一致が必須である' do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
@@ -110,7 +109,7 @@ RSpec.describe User, type: :model do
 
       it 'お名前カナ(全角)は、名前が必須であること' do
         @user.firstname_kana_zenkaku = ''
-       @user.valid?
+        @user.valid?
         expect(@user.errors.full_messages).to include("Firstname kana zenkaku can't be blank")
       end
 

@@ -3,14 +3,14 @@ class Item < ApplicationRecord
   belongs_to :user
 
   validates :item_name, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   validates :item_explain, presence: true
   validates :category_id, presence: true
   validates :item_condition_id, presence: true
   validates :delivery_charge_id, presence: true
   validates :prefecture_id, presence: true
   validates :until_sendday_id, presence: true
-  
+
   validate :validate_image_presence
   validate :validate_price_format
 
