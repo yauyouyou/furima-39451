@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user
 
   validates :item_name, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/, message: "is not a number" }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :item_explain, presence: true
   validates :category_id, presence: true
   validates :item_condition_id, presence: true
@@ -12,6 +12,7 @@ class Item < ApplicationRecord
   validates :until_sendday_id, presence: true
   
   validate :validate_image_presence
+  validate :validate_price_format
 
   private
 
@@ -19,5 +20,11 @@ class Item < ApplicationRecord
     return if image.attached?
 
     errors.add(:image, 'must be attached')
+  end
+
+  def validate_price_format
+    return if price.blank? || price.to_s.match?(/\A[0-9]+\z/)
+
+    errors.add(:price, 'is not a number')
   end
 end
