@@ -50,10 +50,6 @@ class Region < ActiveHash::Base
     { id: 48, name: '沖縄県' }
   ]
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :item
-
-  validates :genre_id, numericality: { other_than: 1 }
 end
 
 

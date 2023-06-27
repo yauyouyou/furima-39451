@@ -9,10 +9,6 @@ class Condition < ActiveHash::Base
     { id: 7, name: '全体的に状態が悪い' },
   ]
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :item
-
-  validates :genre_id, numericality: { other_than: 1 }
 end
 
 

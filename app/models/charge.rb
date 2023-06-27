@@ -5,9 +5,5 @@ class Charge < ActiveHash::Base
     { id: 3, name: '送料込み(出品者負担)' },
   ]
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :item
-
-  validates :genre_id, numericality: { other_than: 1 }
 end
 

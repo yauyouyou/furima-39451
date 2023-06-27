@@ -12,13 +12,5 @@ class Category < ActiveHash::Base
     { id: 10, name: 'ハンドメイド' },
     { id: 11, name: 'その他' }
   ]
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :item
-
-  validates :genre_id, numericality: { other_than: 1 }
+  
 end
-
-
-
-
