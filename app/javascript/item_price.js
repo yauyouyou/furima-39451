@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value.trim();
-    console.log(inputValue);
 
     if (inputValue === "") {
       addTaxDom.innerHTML = "";
