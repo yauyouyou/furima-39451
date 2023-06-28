@@ -7,23 +7,8 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品機能' do
     context 'すべての条件を達成していれば出品できる' do
-      before do
-        user = FactoryBot.create(:user)
-        @item.user = user
-        file = File.open(Rails.root.join('spec', 'support', 'test_image.jpg'))
-        @item.image.attach(io: file, filename: 'test_image.jpg', content_type: 'image/jpg')
-        file.close
-        @item.item_name = 'Example Item'
-        @item.item_explain = 'Example item description'
-        @item.category_id = 2
-        @item.item_condition_id = 3
-        @item.delivery_charge_id = 4
-        @item.prefecture_id = 5
-        @item.until_sendday_id = 6
-        @item.price = 500
-      end
-    
       it '正常に出品できること' do
+        binding.pry
         expect(@item).to be_valid
       end
     end
@@ -54,33 +39,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーに「---」が選択されている場合は出品できないこと' do
-        @item.category_id = nil
+        @item.category_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be selected')
+        expect(@item.errors.full_messages).to include("Category is reserved")
       end
 
       it '商品の状態に「---」が選択されている場合は出品できないこと' do
-        @item.item_condition_id = nil
+        @item.item_condition_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item condition must be selected')
+        expect(@item.errors.full_messages).to include("Item condition is reserved")
       end
 
       it '配送料の負担に「---」が選択されている場合は出品できないこと' do
-        @item.delivery_charge_id = nil
+        @item.delivery_charge_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery charge must be selected')
+        expect(@item.errors.full_messages).to include("Delivery charge is reserved")
       end
 
       it '発送元の地域に「---」が選択されている場合は出品できないこと' do
-        @item.prefecture_id = nil
+        @item.prefecture_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture must be selected')
+        expect(@item.errors.full_messages).to include("Prefecture is reserved")
       end
 
       it '発送までの日数に「---」が選択されている場合は出品できないこと' do
-        @item.until_sendday_id = nil
+        @item.until_sendday_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include('Until sendday must be selected')
+        expect(@item.errors.full_messages).to include("Until sendday is reserved")
       end
 
       it '価格の情報が必須であること' do
