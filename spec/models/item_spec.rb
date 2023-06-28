@@ -40,31 +40,31 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーに「---」が選択されている場合は出品できないこと' do
         @item.category_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is reserved")
+        expect(@item.errors.full_messages).to include('Category is reserved')
       end
 
       it '商品の状態に「---」が選択されている場合は出品できないこと' do
         @item.item_condition_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item condition is reserved")
+        expect(@item.errors.full_messages).to include('Item condition is reserved')
       end
 
       it '配送料の負担に「---」が選択されている場合は出品できないこと' do
         @item.delivery_charge_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge is reserved")
+        expect(@item.errors.full_messages).to include('Delivery charge is reserved')
       end
 
       it '発送元の地域に「---」が選択されている場合は出品できないこと' do
         @item.prefecture_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture is reserved")
+        expect(@item.errors.full_messages).to include('Prefecture is reserved')
       end
 
       it '発送までの日数に「---」が選択されている場合は出品できないこと' do
         @item.until_sendday_id = 2
         @item.valid?
-        expect(@item.errors.full_messages).to include("Until sendday is reserved")
+        expect(@item.errors.full_messages).to include('Until sendday is reserved')
       end
 
       it '価格の情報が必須であること' do

@@ -4,11 +4,10 @@ FactoryBot.define do
     price { 500 }
     item_explain { 'Example item description' }
     category_id { 1 }
-    item_condition_id { 3}
+    item_condition_id { 3 }
     delivery_charge_id { 4 }
     prefecture_id { 5 }
     until_sendday_id { 6 }
-
 
     association :user
 
