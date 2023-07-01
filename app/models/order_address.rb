@@ -1,11 +1,15 @@
 class OrderAddress < ApplicationRecord
   include ActiveModel::Model
-  attr_accessor :user,:item,:post_code,:prefecture_id,:municipality,:address,:telephone_number,:building_name
+  attr_accessor :user,:item,:card_number,:card_month,:card_year,:security_code,:post_code,:prefecture_id,:municipality,:address,:telephone_number,:building_name
 
 
   # orders テーブル
   validates :user, presence: true
   validates :item, presence: true
+  validates :card_number, presence: true
+  validates :card_month, presence: true
+  validates :card_year, presence: true
+  validates :security_code, presence: true
   # addresses テーブル
   validates :post_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: 'must be in the format of 3 digits, hyphen, and 4 digits' }
   validates :prefecture_id, presence: true
@@ -15,7 +19,7 @@ class OrderAddress < ApplicationRecord
   
 
   def save
-    order = Order.create(user: user, item: item)
+    order = Order.create(user: user, item: item, card_number: card_number, card_month: card_month, card_year: card_year, security_code: security_code)
 
     address = Address.create(
       post_code: post_code,
