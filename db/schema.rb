@@ -90,10 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_042438) do
   create_table "orders", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
-    t.string "card_number", null: false
-    t.integer "card_month", null: false
-    t.integer "card_year", null: false
-    t.string "security_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_orders_on_item_id"
