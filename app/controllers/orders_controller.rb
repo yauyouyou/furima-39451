@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       # 保存失敗時の処理
-      render :index, status: :unprocessable_entity
+      render :index
     end
   end
 

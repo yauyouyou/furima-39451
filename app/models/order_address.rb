@@ -32,3 +32,4 @@ class OrderAddress < ApplicationRecord
     order.persisted? && address.persisted?
   end
 end
+
