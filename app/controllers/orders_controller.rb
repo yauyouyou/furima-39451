@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     if @order_address.valid?
       @order_address.save
       # 保存成功時の処理
-      redirect_to root_path
+      return redirect_to root_path
     else
       # 保存失敗時の処理
       render :index, status: :unprocessable_entity
