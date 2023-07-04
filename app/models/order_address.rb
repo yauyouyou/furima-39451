@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id,:item_id,:post_code,:prefecture_id,:municipality,:address,:telephone_number,:building_name
+  attr_accessor :user_id,:item_id,:post_code,:prefecture_id,:municipality,:address,:telephone_number,:building_name,:token
 
 
   # orders テーブル
