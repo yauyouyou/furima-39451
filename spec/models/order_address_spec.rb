@@ -5,7 +5,7 @@ RSpec.describe OrderAddress, type: :model do
     @order_address = FactoryBot.build(:order_address)
   end
 
-  describe '購入機能（住所）' do
+  describe '購入機能' do
     context 'すべての条件を満たしていれば保存できる' do
       it '正常に保存できること' do
         expect(@order_address).to be_valid
@@ -63,6 +63,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.telephone_number = '090-1234-5678'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone number must be 10 to 11 digits")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

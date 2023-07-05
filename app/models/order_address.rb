@@ -4,7 +4,7 @@ class OrderAddress
 
 
   # orders テーブル
-  
+  validates :token, presence: true
   
   # addresses テーブル
   validates :post_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: 'must be in the format of 3 digits, hyphen, and 4 digits' }
