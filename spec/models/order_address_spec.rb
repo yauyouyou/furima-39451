@@ -50,6 +50,8 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.municipality = '東京都'
         @order_address.address = '渋谷区'
         @order_address.telephone_number = '0123456789'
+        @order_address.user_id = '1'
+        @order_address.item_id = '1'
         expect(@order_address).to be_valid
       end
 
@@ -59,16 +61,52 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Telephone number can't be blank")
       end
 
-      it '電話番号が10桁以上11桁以内の半角数値でない場合は保存できないこと' do
-        @order_address.telephone_number = '090-1234-5678'
+      it '電話番号が9桁以下では購入できないこと' do
+        @order_address.telephone_number = '123456789' 
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Telephone number must be 10 to 11 digits')
+        expect(@order_address.errors.full_messages).to include("Telephone number must be 10 to 11 digits and contain only numbers")
       end
 
-      it 'tokenが空では登録できないこと' do
+      it '電話番号が12桁以上では購入できないこと' do
+        @order_address.telephone_number = '123456789012' 
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Telephone number must be 10 to 11 digits and contain only numbers")
+      end
+
+      it '電話番号に半角数字以外が含まれている場合は購入できないこと' do
+        @order_address.telephone_number = '123456789a'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Telephone number must be 10 to 11 digits and contain only numbers")
+      end
+
+      it 'tokenが空では購入できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では購入できないこと' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では購入できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'userが紐付いていなければ購入できないこと' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'itemが紐付いていなければ購入できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

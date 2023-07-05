@@ -4,6 +4,8 @@ class OrderAddress
 
   # orders テーブル
   validates :token, presence: true
+  validates :user_id, presence: true
+  validates :item_id, presence: true
 
   # addresses テーブル
   validates :post_code, presence: true,
@@ -11,7 +13,7 @@ class OrderAddress
   validates :prefecture_id, presence: { message: 'Prefecture is reserved' }, exclusion: { in: [2] }
   validates :municipality, presence: true
   validates :address, presence: true
-  validates :telephone_number, presence: true, format: { with: /\A\d{10,11}\z/, message: 'must be 10 to 11 digits' }
+  validates :telephone_number, presence: true, format: { with: /\A[0-9]{10,11}\z/, message: 'must be 10 to 11 digits and contain only numbers' }
 
   def save
     order = Order.create(user_id:, item_id:)
