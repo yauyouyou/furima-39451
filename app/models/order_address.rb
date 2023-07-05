@@ -9,13 +9,12 @@ class OrderAddress
     validates :item_id
 
     # addresses テーブル
-    validates :post_code,
-              format: { with: /\A\d{3}-\d{4}\z/, message: 'must be in the format of 3 digits, hyphen, and 4 digits' }
-              validates :prefecture_id, exclusion: { in: [2], message: 'is reserved' }
+    validates :post_code,format: { with: /\A\d{3}-\d{4}\z/, message: 'must be in the format of 3 digits, hyphen, and 4 digits' }
     validates :municipality, :address
-    validates :telephone_number,
-              format: { with: /\A[0-9]{10,11}\z/, message: 'must be 10 to 11 digits and contain only numbers' }
+    validates :telephone_number,format: { with: /\A[0-9]{10,11}\z/, message: 'must be 10 to 11 digits and contain only numbers' }
   end
+
+  validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
     order = Order.create(user_id:, item_id:)

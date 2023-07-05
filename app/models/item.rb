@@ -4,8 +4,7 @@ class Item < ApplicationRecord
   has_one    :order
 
   validates :item_name, presence: true
-  validates :price, presence: true,
-                    numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
+  validates :price, presence: true,numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
   validates :item_explain, presence: true
   validates :category_id, presence: true, exclusion: { in: [1] }
   validates :item_condition_id, presence: true, exclusion: { in: [1] }

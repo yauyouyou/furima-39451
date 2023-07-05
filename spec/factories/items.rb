@@ -3,7 +3,7 @@ FactoryBot.define do
     item_name { 'Example Item' }
     price { 500 }
     item_explain { 'Example item description' }
-    category_id { 1 }
+    category_id { 2 }
     item_condition_id { 3 }
     delivery_charge_id { 4 }
     prefecture_id { 5 }

@@ -28,7 +28,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it '都道府県「---」が選択されている場合は出品できないこと' do
-        @order_address.prefecture_id = 2
+        @order_address.prefecture_id = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Prefecture is reserved')
       end
@@ -48,7 +48,7 @@ RSpec.describe OrderAddress, type: :model do
       it '建物名は任意であること' do
         @order_address.building_name = ''
         @order_address.post_code = '123-4567'
-        @order_address.prefecture_id = 1
+        @order_address.prefecture_id = 2
         @order_address.municipality = '東京都'
         @order_address.address = '渋谷区'
         @order_address.telephone_number = '0123456789'
