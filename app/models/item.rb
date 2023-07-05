@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
+  has_one    :order
 
   validates :item_name, presence: true
   validates :price, presence: true,
@@ -21,6 +22,10 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :region
   belongs_to :sendday
+
+  def sold_out?
+    order.present?
+  end
 
   private
 
