@@ -22,6 +22,12 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :region
   belongs_to :sendday
+  
+
+  def sold_out?
+    order.present?
+  end
+
 
   private
 
