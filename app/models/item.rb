@@ -7,11 +7,12 @@ class Item < ApplicationRecord
   validates :price, presence: true,
                     numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
   validates :item_explain, presence: true
-  validates :category_id, presence: { message: 'Category is reserved' }, exclusion: { in: [2] }
-  validates :item_condition_id, presence: { message: 'Item condition is reserved' }, exclusion: { in: [2] }
-  validates :delivery_charge_id, presence: { message: 'Delivery charge is reserved' }, exclusion: { in: [2] }
-  validates :prefecture_id, presence: { message: 'Prefecture is reserved' }, exclusion: { in: [2] }
-  validates :until_sendday_id, presence: { message: 'Until sendday is reserved' }, exclusion: { in: [2] }
+  validates :category_id, presence: true, exclusion: { in: [1] }
+  validates :item_condition_id, presence: true, exclusion: { in: [1] }
+  validates :delivery_charge_id, presence: true, exclusion: { in: [1] }
+  validates :prefecture_id, presence: true, exclusion: { in: [1] }
+  validates :until_sendday_id, presence: true, exclusion: { in: [1] }
+
 
   validate :validate_image_presence
   validate :validate_price_format
